@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="./main.js"></script>
+	<link rel="stylesheet" href="index.css">
+</head>
+<body>
+	<div id="myDIV" class="header">
+		<h2 style="margin:5px">My To Do List</h2>
+		<input type="text" id="myInput" placeholder="Title...">
+		<span onclick="newElement()" class="addBtn">Add</span>
+	</div>
+	
+	<ul id="myUL">
+	</ul>
+	<hr/>
+
+	<!--object-->
+	<div id="myDIV-multi" class="header">
+		<h2 style="margin:5px">My To Do List (Object)</h2>
+		<form id="todo-multi">
+			<input type="text" id="myInputName" placeholder="Name">
+			<input type="text" id="myInputColor" placeholder="Color">
+			<span onclick="newElementMulti()" class="addBtn">Add</span>
+		</form>
+	</div>
+	<button id="sort-name" onclick="sort_data(this)">sort name</button>
+	<button id="sort-color" onclick="sort_data(this)">sort color</button>
+	
+	<ul id="myUL-multi">
+	</ul>
+</body>
+</html>
