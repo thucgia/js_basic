@@ -1,24 +1,55 @@
 var todolist = []
-var close = document.getElementsByClassName("close");
-var edit = document.getElementsByClassName("edit");
+
+const checkValidate = () => {
+	let name_field = document.forms["todo"]["name"].value
+	if (name_field == "") {
+		alert("Name must be filled out")
+		return false
+	}
+	return true
+}
+
+const checkValidateMulti = () => {
+	let name_field = document.forms["todo-multi"]["name"].value
+	let color_field = document.forms["todo-multi"]["color"].value
+	if (name_field == "" || color_field == "") {
+		alert("Name & Color must be filled out")
+		return false
+	}
+	return true
+}
+
+const checkValidateMultiUpd = () => {
+	let name_field = document.forms["update-element"]["name"].value
+	let color_field = document.forms["update-element"]["color"].value
+	if (name_field == "" || color_field == "") {
+		alert("Name & Color must be filled out")
+		return false
+	}
+	return true
+}
+
 var listShow = () => {
 	var show_data_test = todolist
 	const ul = document.getElementById("myUL")
 	ul.innerHTML = ''
 
+	var items_close = ul.getElementsByClassName('close')
+	var items_edit = ul.getElementsByClassName('edit')
+
 	show_data_test.map(item => {
 		ul.append(createLiComponent(item))
 		document.getElementById("myInput").value = "";
 
-		for (let i = 0; i < close.length; i++) {
-			close[i].onclick = function() {
+		for (let i = 0; i < items_close.length; i++) {
+			items_close[i].onclick = function() {
 				todolist.splice(i, 1)
 				listShow()
 			}
 		}
 	
-		for (let i = 0; i < edit.length; i++) {
-			edit[i].onclick = function() {
+		for (let i = 0; i < items_edit.length; i++) {
+			items_edit[i].onclick = function() {
 				var listItem=this.parentElement;
 	
 				var editInput=listItem.querySelector('input[type=text]');
@@ -40,6 +71,7 @@ var listShow = () => {
 }
 
 var newElement = () => {
+	if (!checkValidate()) return
 	const value = document.getElementById("myInput").value
 	todolist.push(value)
 	listShow()
@@ -48,6 +80,7 @@ var newElement = () => {
 // --------------------- object -------------
 var todolistMul = []
 var newElementMulti = () => {
+	if (!checkValidateMulti()) return
 	const value = {}
 	value.name = document.getElementById("myInputName").value
 	value.color = document.getElementById("myInputColor").value
@@ -68,7 +101,7 @@ var listShowMulti = () => {
 		document.getElementById("myInputColor").value = "";
 
 		for (let i = 0; i < items_close.length; i++) {
-			close[i].onclick = function() {
+			items_close[i].onclick = function() {
 				todolistMul.splice(i, 1)
 				listShowMulti()
 			}
@@ -78,21 +111,25 @@ var listShowMulti = () => {
 			items_edit[i].onclick = function() {
 				var listItem=this.parentElement;
 	
-				var editInput=listItem.getElementsByTagName('input');
+				// var editInput=listItem.getElementsByTagName('input');
 				var label=listItem.getElementsByTagName("label");
-				var containsClass=listItem.classList.contains("editMode-multi");
-					//If class of the parent is .editmode
-					if(containsClass){
-						todolistMul[i]["name"] = editInput[0].value
-						todolistMul[i]["color"] = editInput[1].value
-						listShowMulti()
-					}else{
-						editInput[0].value=label[0].innerText;
-						editInput[1].value=label[1].innerText;
-					}
-	
-					//toggle .editmode on the parent.
-					listItem.classList.toggle("editMode-multi");
+				// var containsClass=listItem.classList.contains("editMode-multi");
+				// //If class of the parent is .editmode
+				// if(containsClass){
+				// 	todolistMul[i]["name"] = editInput[0].value
+				// 	todolistMul[i]["color"] = editInput[1].value
+				// 	listShowMulti()
+				// }else{
+				// 	editInput[0].value=label[0].innerText;
+				// 	editInput[1].value=label[1].innerText;
+				// }
+
+				// //toggle .editmode on the parent.
+				// listItem.classList.toggle("editMode-multi");
+				modal.style.display = "block";
+				document.getElementById("id-upd").value = i
+				document.forms["update-element"]["name"].value = label[0].innerText; 
+				document.forms["update-element"]["color"].value = label[1].innerText;
 			}
 		}
 	})
@@ -169,4 +206,13 @@ var sort_data = (obj) => {
 	}
 
 	listShowMulti()
+}
+
+const updateElement = () => {
+	if (!checkValidateMultiUpd()) return 
+	let index = (document.getElementById("id-upd").value)
+	todolistMul[index]["name"] = document.forms["update-element"]["name"].value
+	todolistMul[index]["color"] = document.forms["update-element"]["color"].value
+	listShowMulti()
+	modal.style.display = "none";
 }

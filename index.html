@@ -11,8 +11,10 @@
 <body>
 	<div id="myDIV" class="header">
 		<h2 style="margin:5px">My To Do List</h2>
-		<input type="text" id="myInput" placeholder="Title...">
-		<span onclick="newElement()" class="addBtn">Add</span>
+		<form name="todo">
+			<input type="text" id="myInput" name="name" placeholder="Title...">
+			<span onclick="newElement()" class="addBtn">Add</span>
+		</form>
 	</div>
 	
 	<ul id="myUL">
@@ -22,9 +24,9 @@
 	<!--object-->
 	<div id="myDIV-multi" class="header">
 		<h2 style="margin:5px">My To Do List (Object)</h2>
-		<form id="todo-multi">
-			<input type="text" id="myInputName" placeholder="Name">
-			<input type="text" id="myInputColor" placeholder="Color">
+		<form name="todo-multi">
+			<input type="text" id="myInputName" name="name" placeholder="Name" required>
+			<input type="text" id="myInputColor" name="color" placeholder="Color" required>
 			<span onclick="newElementMulti()" class="addBtn">Add</span>
 		</form>
 	</div>
@@ -33,5 +35,26 @@
 	
 	<ul id="myUL-multi">
 	</ul>
+
+	<!-- Trigger/Open The Modal -->
+	<!-- <button id="myBtn-modal">Open Modal</button> -->
+
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+
+	<!-- Modal content -->
+	<div class="modal-content">
+		<form name="update-element">
+			<span class="close-modal">&times;</span>
+			<input type="text" style="display: none;" id="id-upd" value=""/>
+			<input type="text" id="myInputName-upd" name="name" placeholder="Name" style="float: unset; border: solid 1px;" required>
+			<input type="text" id="myInputColor-upd" name="color" placeholder="Color" style="float: unset; border: solid 1px; margin-top: 10px;" required>
+			<br/>
+			<button type="button" onclick="updateElement()">Save</button>
+		</form>
+	</div>
+
+	</div>
+	<script src="./modal.js"></script>
 </body>
 </html>
