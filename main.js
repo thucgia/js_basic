@@ -36,7 +36,7 @@ var createItem = () => {
 	value.color = document.getElementById("myInputColor").value
 	todolistMul.push(value)
 	showItems(todolistMul)
-	changePage(1)
+	changePage(current_page)
 }
 
 var showItems = (arr) => {
@@ -97,6 +97,10 @@ var sort_data = (obj) => {
 	var datasortName = todolistMul//[...todolistMul]
 	var type = obj.id
 
+	var spinner = document.querySelector('.loader');
+	spinner.classList.add('spin');
+	spinner.style.display = "block"
+
 	if (type == "sort-name") {
 		datasortName.sort((a, b) => {
 			const nameA = a.name.toUpperCase()
@@ -120,6 +124,12 @@ var sort_data = (obj) => {
 
 	showItems(todolistMul)
 	changePage(current_page)
+
+	setTimeout(() => {
+		spinner.classList.remove('spin');
+		spinner.style.display = "none"
+	}, 1000)
+	
 }
 
 const updateElement = () => {
@@ -187,3 +197,19 @@ function numPages()
 {
     return Math.ceil(todolistMul.length / records_per_page);
 }
+
+const url = "./data.json";
+const fetchJSON = async() => {
+	try {
+		const data = await fetch(url)
+		const res = await data.json()
+		todolistMul = [...res]
+	} catch(err) {
+		console.log(err)
+	}
+}
+(async() => {
+	await fetchJSON()
+	showItems(todolistMul)
+	changePage(1)
+})()

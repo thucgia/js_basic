@@ -1,0 +1,21 @@
+[
+{"name": "red", "color": "#f00"},
+{"name": "green", "color": "#0f0"},
+{"name": "blue", "color": "#00f"},
+{"name": "cyan", "color": "#0ff"},
+{"name": "magenta", "color": "#f0f"},
+{"name": "yellow", "color": "#ff0"},
+{"name": "black", "color": "#000"},
+{"name": "aliceblue", "color": "#f0f8ff"},
+{"name": "antiquewhite", "color": "#faebd7"},
+{"name": "aqua", "color": "#00ffff"},
+{"name": "aquamarine", "color": "#7fffd4"},
+{"name": "azure", "color": "#f0ffff"},
+{"name": "beige", "color": "#f5f5dc"},
+{"name": "bisque", "color": "#ffe4c4"},
+{"name": "black", "color": "#000000"},
+{"name": "blanchedalmond", "color": "#ffebcd"},
+{"name": "blue", "color": "#0000ff"},
+{"name": "blueviolet", "color": "#8a2be2"},
+{"name": "brown", "color": "#a52a2a"}
+]
