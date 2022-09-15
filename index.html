@@ -9,52 +9,44 @@
 	<link rel="stylesheet" href="index.css">
 </head>
 <body>
-	<div id="myDIV" class="header">
-		<h2 style="margin:5px">My To Do List</h2>
-		<form name="todo">
-			<input type="text" id="myInput" name="name" placeholder="Title...">
-			<span onclick="newElement()" class="addBtn">Add</span>
-		</form>
-	</div>
-	
-	<ul id="myUL">
-	</ul>
-	<hr/>
-
-	<!--object-->
 	<div id="myDIV-multi" class="header">
 		<h2 style="margin:5px">My To Do List (Object)</h2>
 		<form name="todo-multi">
 			<input type="text" id="myInputName" name="name" placeholder="Name" required>
 			<input type="text" id="myInputColor" name="color" placeholder="Color" required>
-			<span onclick="newElementMulti()" class="addBtn">Add</span>
+			<span onclick="createItem()" class="addBtn">Add</span>
 		</form>
 	</div>
-	<button id="sort-name" onclick="sort_data(this)">sort name</button>
-	<button id="sort-color" onclick="sort_data(this)">sort color</button>
-	
-	<ul id="myUL-multi">
-	</ul>
-
-	<!-- Trigger/Open The Modal -->
-	<!-- <button id="myBtn-modal">Open Modal</button> -->
-
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
 
-	<!-- Modal content -->
-	<div class="modal-content">
-		<form name="update-element">
-			<span class="close-modal">&times;</span>
-			<input type="text" style="display: none;" id="id-upd" value=""/>
-			<input type="text" id="myInputName-upd" name="name" placeholder="Name" style="float: unset; border: solid 1px;" required>
-			<input type="text" id="myInputColor-upd" name="color" placeholder="Color" style="float: unset; border: solid 1px; margin-top: 10px;" required>
-			<br/>
-			<button type="button" onclick="updateElement()">Save</button>
-		</form>
-	</div>
+		<!-- Modal content -->
+		<div class="modal-content">
+			<form name="update-element">
+				<span class="close-modal">&times;</span>
+				<input type="text" style="display: none;" id="id-upd" value=""/>
+				<input type="text" id="myInputName-upd" name="name" placeholder="Name" style="float: unset; border: solid 1px;" required>
+				<input type="text" id="myInputColor-upd" name="color" placeholder="Color" style="float: unset; border: solid 1px; margin-top: 10px;" required>
+				<br/>
+				<button type="button" onclick="updateElement()">Save</button>
+			</form>
+		</div>
 
 	</div>
+
+	<a href="javascript:prevPage()" id="btn_prev">Prev</a>
+	<a href="javascript:nextPage()" id="btn_next">Next</a>
+	page: <span id="page"></span>
+	<table id="my-table">
+		<thead>
+			<tr>
+				<th style="width: 45%;"><a href="#" onclick="sort_data(this)" id="sort-name">Name</a></th>
+				<th style="width: 45%;"><a href="#" onclick="sort_data(this)" id="sort-color">Color</a></th>
+				<th style="width: 10%;"></th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
 	<script src="./modal.js"></script>
 </body>
 </html>
